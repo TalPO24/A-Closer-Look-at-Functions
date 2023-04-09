@@ -59,8 +59,8 @@ newPassport(jonas)
 checkIn(flight, jonas)
 */
 
+/*
 //* Functions Accepting Callback Functions
-
 const oneWord = function(str) { // This function replacing the spaces that in the sentence with ('') nothing basically to set the sentence to one word.
     return str.replace(/ /g, '').toLowerCase()
 }
@@ -90,3 +90,19 @@ document.body.addEventListener('click', high5);
 //* 1) The first big advantage of this is that it makes it easy to split up our code into more reusable and interconnected parts.
 
 //* 2) There is a second way more important advantage, wich is the fact that callback functions allow us to create abstraction. Basically what abstraction means is that we hide the detail of some code implementation because we dont really care about all that detail. And this allow us to think about problems at a higher more abstract level.And so thats why its calld OBSTRACTION.
+*/
+
+//* Functions Returning Functions.
+const greet = function(greating) {
+    return function(name) {
+        console.log(greating, name)
+    }
+}
+
+const greetHey = greet("Hey")
+greetHey('Jonas')
+greetHey('Tal')
+
+//Challenge
+const greetArr = greating => name => console.log(`${greating} ${name}`)
+greetArr('Hi')('Jonas')
