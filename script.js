@@ -61,7 +61,7 @@ checkIn(flight, jonas)
 
 /*
 //* Functions Accepting Callback Functions
-const oneWord = function(str) { // This function replacing the spaces that in the sentence with ('') nothing basically to set the sentence to one word.
+const oneWord = function(str) { // This function replacing the spaces that in the sentence with ('') nothing basically to set the sentence to one word in lower case.
     return str.replace(/ /g, '').toLowerCase()
 }
 
@@ -122,7 +122,7 @@ const lufthansa = {
     },
 }
 lufthansa.book(239, 'Jonas Schmedtmann')
-lufthansa.book(459, 'Jhon Smith')
+lufthansa.book(459, 'John Smith')
 lufthansa.book(459, 'Tal Poris')
 
 
@@ -159,4 +159,33 @@ console.log(swiss)
 
 book.call(swiss, ...flightData)
 
+
 //* The Bind Method
+// book.call(eurowings, 23, 'Sarah Williams')
+const bookEW = book.bind(eurowings)
+const bookLH = book.bind(lufthansa)
+const bookLX = book.bind(swiss)
+bookEW(23, 'Steven Williams')
+
+const bookEW23 = book.bind(eurowings, 23)
+bookEW23('Jonas Schmidtmann')
+bookEW23('Martha Cooper')
+
+// With Event Listeners
+lufthansa.planes = 300
+lufthansa.buyPlane = function() {
+    console.log(this)
+
+    this.planes++
+        console.log(this.planes)
+}
+
+document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa))
+
+// Partial application
+const addTax = (rate, value) => value + value * rate
+console.log(addTax(0.1, 200))
+
+const addVAT = addTax.bind(null, 0.23)
+console.log(addVAT(100))
+console.log(addVAT(23))
