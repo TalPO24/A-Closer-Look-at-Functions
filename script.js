@@ -92,6 +92,8 @@ document.body.addEventListener('click', high5);
 //* 2) There is a second way more important advantage, wich is the fact that callback functions allow us to create abstraction. Basically what abstraction means is that we hide the detail of some code implementation because we dont really care about all that detail. And this allow us to think about problems at a higher more abstract level.And so thats why its calld OBSTRACTION.
 */
 
+
+/*
 //* Functions Returning Functions.
 const greet = function(greating) {
     return function(name) {
@@ -106,3 +108,55 @@ greetHey('Tal')
 //Challenge
 const greetArr = greating => name => console.log(`${greating} ${name}`)
 greetArr('Hi')('Jonas')
+*/
+
+//* The call and apply methods
+const lufthansa = {
+    airLines: 'Lufthansa',
+    iataCode: 'LH',
+    bookings: [],
+    // book: function() {}
+    book(flightNum, name) {
+        console.log(`${name} booked a seat on ${this.airLines} flight ${this.iataCode}${flightNum}`)
+        this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name })
+    },
+}
+lufthansa.book(239, 'Jonas Schmedtmann')
+lufthansa.book(459, 'Jhon Smith')
+lufthansa.book(459, 'Tal Poris')
+
+
+const eurowings = {
+    airLines: 'Eurowings',
+    iataCode: 'EW',
+    bookings: [],
+}
+
+const book = lufthansa.book
+    // does NOT work
+    // book(23, 'Sarah Williams')
+
+// Call method
+book.call(eurowings, 23, 'Sarah Williams')
+console.log(eurowings)
+
+book.call(lufthansa, 239, 'Mary Cooper')
+console.log(lufthansa)
+
+const swiss = {
+    airLines: 'Swiss Air Lines',
+    iataCode: 'LX',
+    bookings: [],
+}
+
+book.call(swiss, 583, 'Jake Choen')
+console.log(swiss)
+
+// Apply method
+const flightData = [583, 'George Cooper']
+book.apply(swiss, flightData)
+console.log(swiss)
+
+book.call(swiss, ...flightData)
+
+//* The Bind Method
