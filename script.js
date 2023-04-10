@@ -263,6 +263,8 @@ runOnce();
 console.log(notPrivate)
 */
 
+
+/*
 //* Closures
 // Closure in JavaScript is a form of scoping used to preserve variables from the outer scope of a function in the inner scope of a function.
 const secureBooking = function() {
@@ -321,3 +323,16 @@ const boardPassengers = function(n, wait) {
 }
 
 boardPassengers(180, 3)
+*/
+
+//* Challenge #2
+
+(function() {
+    const header = document.querySelector('h1');
+    header.style.color = 'red';
+
+
+    document.body.addEventListener('click', function() {
+        header.style.color = 'blue'
+    })
+})()
