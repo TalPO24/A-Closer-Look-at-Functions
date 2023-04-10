@@ -239,6 +239,7 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
 */
 
+/*
 //* Immediately Invoked Function Expressions (IIFE)
 // An IIFE (Immediately Invoked Function Expression) is a function that runs the moment it is invoked or called in the JavaScript event loop.
 
@@ -260,3 +261,23 @@ runOnce();
     var notPrivate = 46
 }
 console.log(notPrivate)
+*/
+
+//* Closures
+
+const secureBooking = function() {
+    let passengerCount = 0
+
+    return function() {
+        passengerCount++
+        console.log(`${passengerCount} passengers`)
+    }
+}
+
+const booker = secureBooking()
+
+booker()
+booker()
+booker()
+
+console.dir(booker)
