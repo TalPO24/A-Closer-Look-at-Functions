@@ -110,6 +110,8 @@ const greetArr = greating => name => console.log(`${greating} ${name}`)
 greetArr('Hi')('Jonas')
 */
 
+
+/*
 //* The call and apply methods
 const lufthansa = {
     airLines: 'Lufthansa',
@@ -158,9 +160,11 @@ book.apply(swiss, flightData)
 console.log(swiss)
 
 book.call(swiss, ...flightData)
-
+*
 
 //* The Bind Method
+// The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
+
 // book.call(eurowings, 23, 'Sarah Williams')
 const bookEW = book.bind(eurowings)
 const bookLH = book.bind(lufthansa)
@@ -189,8 +193,9 @@ console.log(addTax(0.1, 200))
 const addVAT = addTax.bind(null, 0.23)
 console.log(addVAT(100))
 console.log(addVAT(23))
+*/
 
-
+/*
 //* Challenge
 const poll = {
     question: 'What is your favourite programming language?',
@@ -232,3 +237,26 @@ document
 poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
+*/
+
+//* Immediately Invoked Function Expressions (IIFE)
+// An IIFE (Immediately Invoked Function Expression) is a function that runs the moment it is invoked or called in the JavaScript event loop.
+
+const runOnce = function() {
+    console.log('This will never run again')
+}
+runOnce();
+
+// IIFE
+(function() {
+    console.log('This will never run again');
+})();
+
+
+(() => console.log('This will never run again'))();
+
+{
+    const isPrivate = 23
+    var notPrivate = 46
+}
+console.log(notPrivate)
